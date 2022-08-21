@@ -1,0 +1,56 @@
+;*******************************************************************************
+;**** VRS_XCP 
+;*******************************************************************************
+
+; Parameter for KWP2000 Prototcol
+; DO NOT CHANGE FOR XCP_FLASHING
+
+ECU_ADDR:,             0x01;                    ; Dummy
+PROJECT_NAME:,         VRS_XCP;                 ; project name
+KWP2000_DIA:,          KWP2000;                 ; Dummy
+PROG_ST_ADDR:,         0xF1;                    ; Dummy
+PENDING_TIMEOUT:,      120000;                  ; 2 sec
+;
+;Timing,Baudrate and DIAG mode  only Dummy to serve the parser
+;                      timing parameter for stimulation
+;                      Index  p1Max   p2Min   p2Max   p3Min   p3Max   p4Min
+KWP2000_TP:,           1,     0x0002, 0x0000, 0x0032, 0x0027, 0x1388, 0x0002;
+;
+;                      parameter for key71 stimulation
+;                      baud  w1    w2    w3    w4Min w4Max w5
+KWP2000_STP:,          0x14, 0x1e, 0x14, 0x14, 0x19, 0x32, 0x1e;
+;
+;                      parameter for KWP2000 stimulation
+;                      Index   tiniL   wuP     stimLine stimType
+KWP2000_SP:,           1,      0x0012, 0x0028, 0x00,    0x81;
+;
+;                      Index   Baudrate       i     k
+HIGH_BDR:,             1,      10400,         0,   20;
+;
+DIAG_MODE:,            0x85;       ; diagnostic mode for Flash programming
+;
+;*******************************************************************************
+;*****  Adaptions to Project for INCA CCP-Flashing required
+;******************************************************************************
+;                     index  addrExt transferType startAddress  endAddress
+
+; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+; !!! Any change here needs be done in "base.pri" as well
+; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ERASE_MEM_AREA:,        1,    0x60,         0x1,  0x001F0000L,  0x001F0083L; Calib
+ERASE_MEM_AREA:,        2,    0x60,         0x1,  0x0018E000L,  0x00190FF0L; MAP_CONTENT
+
+;
+DEST_MEM_AREA:,         1,    0x60,         0x1,  0x001F0000L,  0x001F0083L; Calib
+DEST_MEM_AREA:,         2,    0x60,         0x1,  0x0018E000L,  0x00190FF0L; MAP_CONTENT
+
+;
+SOURCE_MEM_AREA:,       1,    0x60,         0x1,  0x00000000L,  0x00000083L; Calib
+SOURCE_MEM_AREA:,       2,    0x60,         0x1,  0x00000000L,  0x00002FF0L; MAP_CONTENT
+
+;*******************************************************************************
+;*****  Adaptions to Project for INCA CCP-Flashing required
+;******************************************************************************
+
+KWP2000_END;            ;end of data set

@@ -1,0 +1,10 @@
+3 1 1 "#File name:" 1 1 1 1 1
+"*.HEX"
+
+2 1 1 "#Action:               " 1 1 1 1 5
+"flash calib" "flash 1 c:\$prof\xcp\flash"
+"flash map_content" "flash 2 c:\$prof\xcp\flash"
+"code + data small" "flash 3 c:\$prof\xcp\flash"
+"code + data big" "flash 4 c:\$prof\xcp\flash"
+"clear data timeout" "flash 5 c:\$prof\xcp\flash"
+
